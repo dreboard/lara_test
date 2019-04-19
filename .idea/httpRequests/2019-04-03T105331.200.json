@@ -1,0 +1,130 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Admin Man",
+      "email": "dre.board@gmail.com",
+      "email_verified_at": null,
+      "isAdmin": true,
+      "groupable_type": "team",
+      "groupable_id": 1,
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 2,
+      "name": "Guest Man",
+      "email": "guest@guest.com",
+      "email_verified_at": null,
+      "isAdmin": false,
+      "groupable_type": "team",
+      "groupable_id": 2,
+      "created_at": null,
+      "updated_at": null
+    },
+    {
+      "id": 3,
+      "name": "Prof. Fritz Jast Sr.",
+      "email": "lawson.hauck@example.org",
+      "email_verified_at": "2019-04-04 02:18:29",
+      "isAdmin": false,
+      "groupable_type": "App\\Teams",
+      "groupable_id": 2,
+      "created_at": "2019-04-04 02:18:29",
+      "updated_at": "2019-04-04 02:18:29"
+    },
+    {
+      "id": 4,
+      "name": "Gisselle Marvin PhD",
+      "email": "kendrick.sauer@example.com",
+      "email_verified_at": "2019-04-04 02:18:29",
+      "isAdmin": false,
+      "groupable_type": "App\\Teams",
+      "groupable_id": 2,
+      "created_at": "2019-04-04 02:18:29",
+      "updated_at": "2019-04-04 02:18:29"
+    },
+    {
+      "id": 5,
+      "name": "Wilburn Heathcote",
+      "email": "mroob@example.com",
+      "email_verified_at": "2019-04-04 02:18:29",
+      "isAdmin": false,
+      "groupable_type": "App\\Teams",
+      "groupable_id": 2,
+      "created_at": "2019-04-04 02:18:29",
+      "updated_at": "2019-04-04 02:18:29"
+    },
+    {
+      "id": 6,
+      "name": "Johathan Fay DDS",
+      "email": "esther67@example.org",
+      "email_verified_at": "2019-04-04 02:18:29",
+      "isAdmin": false,
+      "groupable_type": "App\\Teams",
+      "groupable_id": 2,
+      "created_at": "2019-04-04 02:18:29",
+      "updated_at": "2019-04-04 02:18:29"
+    },
+    {
+      "id": 7,
+      "name": "Shania Schuster",
+      "email": "justus83@example.net",
+      "email_verified_at": "2019-04-04 02:18:29",
+      "isAdmin": false,
+      "groupable_type": "App\\Teams",
+      "groupable_id": 2,
+      "created_at": "2019-04-04 02:18:29",
+      "updated_at": "2019-04-04 02:18:29"
+    },
+    {
+      "id": 8,
+      "name": "Gerry Greenfelder PhD",
+      "email": "jskiles@example.org",
+      "email_verified_at": "2019-04-04 02:18:29",
+      "isAdmin": false,
+      "groupable_type": "App\\Teams",
+      "groupable_id": 2,
+      "created_at": "2019-04-04 02:18:29",
+      "updated_at": "2019-04-04 02:18:29"
+    },
+    {
+      "id": 9,
+      "name": "Glennie Denesik",
+      "email": "tremblay.madison@example.org",
+      "email_verified_at": "2019-04-04 02:18:29",
+      "isAdmin": false,
+      "groupable_type": "App\\Teams",
+      "groupable_id": 2,
+      "created_at": "2019-04-04 02:18:30",
+      "updated_at": "2019-04-04 02:18:30"
+    },
+    {
+      "id": 10,
+      "name": "Alden Runte",
+      "email": "balistreri.lesley@example.net",
+      "email_verified_at": "2019-04-04 02:18:29",
+      "isAdmin": false,
+      "groupable_type": "App\\Teams",
+      "groupable_id": 2,
+      "created_at": "2019-04-04 02:18:30",
+      "updated_at": "2019-04-04 02:18:30"
+    }
+  ],
+  "links": {
+    "self": "link-value",
+    "first": "http:\/\/127.0.0.1:8000\/user?page=1",
+    "last": "http:\/\/127.0.0.1:8000\/user?page=1",
+    "prev": null,
+    "next": null
+  },
+  "meta": {
+    "current_page": 1,
+    "from": 1,
+    "last_page": 1,
+    "path": "http:\/\/127.0.0.1:8000\/user",
+    "per_page": 15,
+    "to": 10,
+    "total": 10
+  }
+}

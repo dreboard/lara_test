@@ -1,0 +1,19 @@
+{
+  "data": [],
+  "links": {
+    "self": "link-value",
+    "first": "http:\/\/127.0.0.1:8000\/user?page=1",
+    "last": "http:\/\/127.0.0.1:8000\/user?page=2",
+    "prev": "http:\/\/127.0.0.1:8000\/user?page=2",
+    "next": null
+  },
+  "meta": {
+    "current_page": 3,
+    "from": null,
+    "last_page": 2,
+    "path": "http:\/\/127.0.0.1:8000\/user",
+    "per_page": 5,
+    "to": null,
+    "total": 10
+  }
+}

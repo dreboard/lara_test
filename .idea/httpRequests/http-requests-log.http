@@ -1,0 +1,70 @@
+GET http://127.0.0.1:8000/user?page=3
+Accept: application/json
+Cache-Control: no-cache
+X-Requested-With: XMLHttpRequest
+
+<> 2019-04-03T111105.200.json
+
+###
+
+GET http://127.0.0.1:8000/user?page=2
+Accept: application/json
+Cache-Control: no-cache
+X-Requested-With: XMLHttpRequest
+
+<> 2019-04-03T111056.200.json
+
+###
+
+GET http://127.0.0.1:8000/user
+Accept: application/json
+Cache-Control: no-cache
+X-Requested-With: XMLHttpRequest
+
+<> 2019-04-03T110929.200.json
+
+###
+
+GET http://127.0.0.1:8000/user
+Accept: application/json
+Cache-Control: no-cache
+X-Requested-With: XMLHttpRequest
+
+<> 2019-04-03T110839.200.json
+
+###
+
+GET http://127.0.0.1:8000/user
+Accept: application/json
+Cache-Control: no-cache
+X-Requested-With: XMLHttpRequest
+
+<> 2019-04-03T105331.200.json
+
+###
+
+GET http://127.0.0.1:8000/user
+Accept: application/json
+Cache-Control: no-cache
+X-Requested-With: XMLHttpRequest
+
+<> 2019-04-03T105124.500.json
+
+###
+
+GET http://127.0.0.1:8000/user
+Accept: application/json
+Cache-Control: no-cache
+X-Requested-With: XMLHttpRequest
+
+<> 2019-04-03T104528.200.html
+
+###
+
+GET http://localhost:8080/user
+Accept: application/json
+Cache-Control: no-cache
+X-Requested-With: XMLHttpRequest
+
+###
+
