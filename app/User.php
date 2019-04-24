@@ -27,7 +27,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','groupable_type', 'groupable_id'
+        'name', 'email', 'password','groupable_type', 'groupable_id', 'profile_img'
     ];
 
     /**
@@ -107,5 +107,10 @@ class User extends Authenticatable
     public function threads()
     {
         return $this->hasMany('App\Thread');
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role');
     }
 }

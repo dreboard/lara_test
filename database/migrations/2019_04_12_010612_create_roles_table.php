@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -15,8 +16,16 @@ class CreateRolesTable extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
             $table->timestamps();
         });
+
+        DB::table('roles')->insert([
+            ['name'=> 'author'],
+            ['name' => 'writer'],
+            ['name' => 'manager'],
+            ['name' => 'worker']
+        ]);
     }
 
     /**

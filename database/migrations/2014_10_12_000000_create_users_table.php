@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('isAdmin')->default(0);
-            $table->string('profile_img')->default(public_path('img/blank_profile.png'));
+            $table->string('profile_img')->default('none');
             $table->morphs('groupable');
             $table->rememberToken();
             $table->timestamps();
@@ -33,7 +33,7 @@ class CreateUsersTable extends Migration
                 'email' => 'dre.board@gmail.com',
                 'password' => bcrypt('test1234'),
                 'isAdmin' => 1,
-                'profile_img' => public_path('img/blank_profile.png'),
+                'profile_img' => 'none',
                 'groupable_id' => 1,
                 'groupable_type' => 'team'// App\Team
 

@@ -9,6 +9,23 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
+
+    /*public function before($user, $ability)
+    {
+        if ($user->isAdmin) {
+            return true;
+        }
+    }*/
+
+    public function author($user)
+    {
+        $r = $user->roles->where('name', 'author')->first();
+        if($r){
+            return true;
+        }
+        return false;
+    }
+
     /**
      * Determine whether the user can view the model.
      *
@@ -39,9 +56,11 @@ class UserPolicy
      * @param  \App\User  $model
      * @return mixed
      */
-    public function update(User $user, User $model)
+    public function updateUser(User $user)
     {
-        //
+        logger('auth: '.auth()->user()->id);
+        logger('user: '.$user->id);
+        return auth()->user()->id === $user->id;
     }
 
     /**

@@ -46,6 +46,8 @@ Route::get('/get_user/{user}', 'UserController@get'); // route model binding
 Route::resource('user', 'UserController');
 Route::resource('post', 'PostController');
 
+Route::post('/assign_role', 'Rolecontroller@assignRole');
+
 Route::get('/usersAll', function () {
     return new UsersResource(User::paginate());
 })->middleware('isAdmin');
@@ -84,10 +86,17 @@ Route::post('/new_user3', function () {
 
 
 
+$router = app()->make('router');
+//$router->get($path, 'PilotsController@index')->name('pilots.index');
 
-
-
-
+/**
+You can also use:
+router->resource
+router->post
+router->delete
+router->match
+...
+ */
 
 
 

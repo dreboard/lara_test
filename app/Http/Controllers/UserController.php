@@ -6,9 +6,12 @@ use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\UsersResource;
 use App\Notifications\NewUserNotification;
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -27,12 +30,13 @@ class UserController extends Controller
      */
     public function index()
     {
+        $count = User::count();
         $users = User::paginate();
         if(request()->ajax()){
             return new UsersResource(User::paginate(5));
         }
         //Storage::disk('public')->put(Auth::user()->id.'/file.txt', json_encode($users));
-        return view('users', ['users' => $users]);
+        return view('users', ['users' => $users, 'count' => $count]);
     }
 
     /**
@@ -69,6 +73,28 @@ class UserController extends Controller
         $user->notify(new NewUserNotification($user));
         return redirect()->action('UserController@index');
     }
+
+    public function store2(UserRequest $request)
+    {
+        $user = new User([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make('password')
+        ]);
+        $user->save();
+        $user->notify(new NewUserNotification($user));
+        return redirect()->action('UserController@index');
+    }
+    public function store3(UserRequest $request)
+    {
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make('password')
+        ]);
+        $user->notify(new NewUserNotification($user));
+        return redirect()->action('UserController@index');
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -88,11 +114,32 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
+        //dd(app('Illuminate\Contracts\Config\Repository'));
+        //dd(Config::get('database.default'));
+        $user = User::with('roles')->find($id);
+        $roles = Role::orderBy('name')->get();
+        $name = 'author';
+        dump($user->roles);
+        $r = $user->roles->where('name', $name)->first();
+        if($r){
+            dump('true');
+        }
+        //dump($r);
+        if($user->roles->contains($name)){
+            dump('true');
+        }
+
+        //dd($r);
+
+        $roles3 = DB::table('role_user')->where('user_id', '<>', auth()->id())->get();
+        $roles2 = User::with(['roles' => function($query){
+            $query->where('user_id', '<>', auth()->id())->orderBy('name');
+        }])->get();
+
         if(\request()->ajax()){
             return response()->json(['user' => $user]);
         }
-        return view('user',['user' => $user]);
+        return view('user',['user' => $user, 'roles' => $roles]);
     }
     /**
      * Display the specified resource.
@@ -122,9 +169,31 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $user = User::find($request->user_id);
+
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+            'profile_img' => 'image|nullable|max:1999',
+        ]);
+        if($request->hasFile('profile_img')){
+            $name = $request->file('profile_img')->getClientOriginalName();
+            //dd($name);
+            $image = 'profile_img.'.$request->file('profile_img')->extension();
+            //$image = 'profile_img.'.$request->file('profile_img')->extension();
+            $url = $request->file('profile_img')->storeAs('public/'.$user->id, $image);
+            //$url = Storage::putFile('public', $request->file('profile_img'));
+            //dd(Storage::url($url));
+            $user->profile_img = $url;
+        } else {
+            $user->profile_img = 'none';
+        }
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+        return redirect()->action('UserController@show', ['id' => $request->user_id]);
     }
 
     /**

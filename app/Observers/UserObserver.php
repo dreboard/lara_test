@@ -2,8 +2,10 @@
 
 namespace App\Observers;
 
+use App\Mail\NewUserMailable;
 use App\User;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class UserObserver
 {
@@ -15,6 +17,7 @@ class UserObserver
      */
     public function created(User $user)
     {
+        Mail::to($user)->send(new NewUserMailable($user));
         Log::info(__CLASS__.' created '.$user);
     }
     /**

@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card-header">All Users</div>
+            <div class="card-header">All Users ({{ $count }})</div>
             @if ($errors->user->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -20,11 +20,11 @@
                     {{csrf_field()}}
                     <div class="form-group">
                         <label class="col-md-4">Name</label>
-                        <input type="text" class="form-control" name="name"/>
+                        <input type="text" class="form-control" name="name" value="{{request()->old('name')}}"/>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4">email</label>
-                        <input type="text" class="form-control" name="email"/>
+                        <input type="text" class="form-control" name="email" value="{{old('email')}}"/>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Add</button>

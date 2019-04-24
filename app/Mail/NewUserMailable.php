@@ -9,13 +9,14 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
 
-class NewUserMailable extends Mailable implements ShouldQueue
+class NewUserMailable extends Mailable //implements ShouldQueue
 {
     use Queueable, SerializesModels;
     /**
+     * All public properties available in view
      * @var User
      */
-    private $user;
+    public $user;
 
     /**
      * Create a new message instance.
@@ -36,7 +37,8 @@ class NewUserMailable extends Mailable implements ShouldQueue
     {
         try{
             Log::info(__CLASS__.' mailed '.$this->user);
-            return $this->view('emails.new_user', ['user' => $this->user]);
+            //return $this->view('emails.new_user', ['user' => $this->user]);
+            return $this->view('emails.new_user');
         }catch (\Throwable $e){
             logger($e->getMessage());
         }
