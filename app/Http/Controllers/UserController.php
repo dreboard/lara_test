@@ -8,10 +8,13 @@ use App\Http\Resources\UsersResource;
 use App\Notifications\NewUserNotification;
 use App\Role;
 use App\User;
+use Illuminate\Events\Dispatcher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -116,6 +119,7 @@ class UserController extends Controller
     {
         //dd(app('Illuminate\Contracts\Config\Repository'));
         //dd(Config::get('database.default'));
+        request()->session()->reflash();
         $user = User::with('roles')->find($id);
         $roles = Role::orderBy('name')->get();
         $name = 'author';
@@ -181,6 +185,7 @@ class UserController extends Controller
         if($request->hasFile('profile_img')){
             $name = $request->file('profile_img')->getClientOriginalName();
             //dd($name);
+            event('event.logit', $user);
             $image = 'profile_img.'.$request->file('profile_img')->extension();
             //$image = 'profile_img.'.$request->file('profile_img')->extension();
             $url = $request->file('profile_img')->storeAs('public/'.$user->id, $image);
@@ -193,7 +198,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->save();
-        return redirect()->action('UserController@show', ['id' => $request->user_id]);
+        return redirect()->action('UserController@show', ['id' => $request->user_id])->with('status', 'Profile updated!');
     }
 
     /**

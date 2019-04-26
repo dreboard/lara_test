@@ -19,6 +19,13 @@
                         </ul>
                     </div>
                 @endif
+
+                @if (session('status'))
+                    <div class="alert alert-danger">
+                        {{ session('status') }}
+                    </div>
+                @endif
+
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-6">

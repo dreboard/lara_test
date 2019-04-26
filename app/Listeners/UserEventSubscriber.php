@@ -8,21 +8,21 @@ class UserEventSubscriber
      * Handle user login events.
      */
     public function onUserLogin($event) {
-        info('User logged in : '.var_dump($event));
+        info('User logged in : '.$event->user->id);
     }
 
     /**
      * Handle user login events.
      */
     public function onUserRegister($event) {
-        info('User registered : '.var_dump($event));
+        info('User registered : '.$event->user->id);
     }
 
     /**
      * Handle user logout events.
      */
     public function onUserLogout($event) {
-        info('User logged out : '.var_dump($event));
+        info('User logged out : '.$event->user->id);
     }
 
     /**
